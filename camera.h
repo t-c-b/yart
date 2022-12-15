@@ -31,6 +31,12 @@ public:
     return Ray(origin + offset, upper_left + s*horizontal + t*vertical - origin - offset);
   }
 
+  Ray getRay(float s, float t, vec4 offset) {
+    vec4 rd = lens_radius*randDisk();
+    offset = offset + u*rd.x() + v*rd.y();
+    return Ray(origin + offset, upper_left + s*horizontal + t*vertical - origin - offset);
+  }
+
   vec4 origin, upper_left, horizontal, vertical;
   vec4 u, v, w;
   float lens_radius;
