@@ -4,6 +4,19 @@
 class Material {
 public:
   virtual bool scatter(const Ray& r_in, const HitRecord& rec, vec4& attenuation, Ray& scattered) const = 0;
+  int emissive=0;
+  vec4 color={0,0,0,0};
+};
+
+class Emissive : public Material {
+public:
+  Emissive(const vec4& c) {
+    color = c;
+    emissive = 1;
+  }
+  virtual bool scatter(const Ray& r_in, const HitRecord& rec, vec4& attenuation, Ray& scattered) const {
+    return false;
+  }
 };
 
 class Lambertian : public Material {
